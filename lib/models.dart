@@ -1,13 +1,15 @@
 class WeatherInfo {
+  final String main;
   final String description;
   final String icon;
 
-  WeatherInfo({this.description, this.icon});
+  WeatherInfo({this.main, this.description, this.icon});
 
   factory WeatherInfo.fromJson(Map<String, dynamic> json) {
+    final main = json['main'];
     final description = json['description'];
     final icon = json['icon'];
-    return WeatherInfo(description: description, icon: icon);
+    return WeatherInfo(main: main, description: description, icon: icon);
   }
 }
 
@@ -55,7 +57,12 @@ class WeatherResponse {
     return 'https://openweathermap.org/img/wn/${weatherInfo.icon}@4x.png';
   }
 
-  WeatherResponse({this.cityName, this.tempInfo, this.humidInfo, this.windInfo ,this.weatherInfo});
+  WeatherResponse(
+      {this.cityName,
+      this.tempInfo,
+      this.humidInfo,
+      this.windInfo,
+      this.weatherInfo});
 
   factory WeatherResponse.fromJson(Map<String, dynamic> json) {
     final cityName = json['name'];
@@ -73,6 +80,10 @@ class WeatherResponse {
     final weatherInfo = WeatherInfo.fromJson(weatherInfoJson);
 
     return WeatherResponse(
-        cityName: cityName, tempInfo: tempInfo, humidInfo: humidInfo, windInfo: windInfo, weatherInfo: weatherInfo);
+        cityName: cityName,
+        tempInfo: tempInfo,
+        humidInfo: humidInfo,
+        windInfo: windInfo,
+        weatherInfo: weatherInfo);
   }
 }

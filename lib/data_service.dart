@@ -24,7 +24,6 @@ class DataService {
   }
 
   Future<WeatherResponse> getWeatherByCoor(String lat, String lon) async {
-
     final queryParameters = {
       'lat': lat,
       'lon': lon,
